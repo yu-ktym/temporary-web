@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>菊友会ホームページ 共通HTML最小版</title>
+  <script>
+    (function () {
+      var mobileBackgrounds = ["back02", "ver2", "ver3", "ver4"];
+      var storageKey = "kikuyukaiMobileBg";
+      var lastBackground = "";
+      try {
+        lastBackground = window.localStorage.getItem(storageKey) || "";
+      } catch (error) {
+        lastBackground = "";
+      }
+      var selectableBackgrounds = mobileBackgrounds.filter(function (background) {
+        return background !== lastBackground;
+      });
+      var selectedBackground =
+        selectableBackgrounds[Math.floor(Math.random() * selectableBackgrounds.length)];
+      document.documentElement.dataset.mobileBg =
+        selectedBackground;
+      try {
+        window.localStorage.setItem(storageKey, selectedBackground);
+      } catch (error) {
+        /* Ignore storage errors so the page can still load normally. */
+      }
+    })();
+  </script>
+  <link rel="stylesheet" href="./ktym-css/base.css">
+  <link rel="stylesheet" href="./ktym-css/mobile.css">
+  <link rel="stylesheet" href="./ktym-css/desktop.css">
+</head>
+<body>
+  <a href="#main">本文へ移動</a>
+
+  <header class="site-header">
+    <div class="site-alert">
+      <p>重要告知エリア</p>
+      <a href="#topics">詳細はこちら</a>
+    </div>
+
+    <div class="site-branding">
+      <p class="site-name-sub">第一東京市立中学校・東京都立九段中学校・東京都立九段高等学校・千代田区立九段中等教育学校 同窓会</p>
+      <h1 class="site-name-main">菊友会</h1>
+      <p class="site-description">トップページ共通HTML。見た目はCSSで自由に調整する前提。</p>
+    </div>
+
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="global-nav-panel">
+      <span class="menu-toggle__label">menu</span>
+    </button>
+
+    <nav id="global-nav-panel" class="global-nav" aria-label="主要メニュー" hidden>
+      <div class="global-nav__panel">
+        <div class="global-nav__head">
+          <p class="global-nav__eyebrow">menu</p>
+          <button class="menu-close" type="button" aria-label="close menu">close</button>
+        </div>
+        <ul>
+        <li><a href="#news">新着情報</a></li>
+        <li><a href="#topics">トピックス</a></li>
+        <li><a href="#calendar">行事カレンダー</a></li>
+        <li><a href="#bulletin">菊友会報</a></li>
+        <li><a href="#community">同期会/クラブ/同好会</a></li>
+        <li><a href="#letters">会員だより</a></li>
+        <li><a href="#gallery">思い出写真館</a></li>
+        <li><a href="#notices">お知らせ</a></li>
+        <li><a href="#about">菊友会について</a></li>
+        <li><a href="#contact">お問合せ</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <section class="hero" aria-label="トップビジュアル">
+      <div class="hero-media">メイン画像エリア</div>
+      <div class="hero-submedia-list">
+        <div class="hero-submedia">補助画像エリア 1</div>
+        <div class="hero-submedia">補助画像エリア 2</div>
+      </div>
+    </section>
+  </header>
+
+  <main id="main">
+    <section id="news" class="content-section">
+      <header class="section-header">
+        <h2>新着情報</h2>
+        <a href="#topics">トピックスに移動する</a>
+      </header>
+      <ul class="link-list">
+        <li><a href="#">新着タイトル 1</a></li>
+        <li><a href="#">新着タイトル 2</a></li>
+        <li><a href="#">新着タイトル 3</a></li>
+        <li><a href="#">新着タイトル 4</a></li>
+        <li><a href="#">新着タイトル 5</a></li>
+      </ul>
+    </section>
+
+    <section id="topics" class="content-section">
+      <header class="section-header">
+        <h2>トピックス</h2>
+        <a href="#">トピックス一覧へ</a>
+      </header>
+      <ul class="card-list">
+        <li class="card">
+          <h3>トピックス 1</h3>
+          <p>概要テキスト</p>
+          <a href="#">記事を見る</a>
+        </li>
+        <li class="card">
+          <h3>トピックス 2</h3>
+          <p>概要テキスト</p>
+          <a href="#">記事を見る</a>
+        </li>
+        <li class="card">
+          <h3>トピックス 3</h3>
+          <p>概要テキスト</p>
+          <a href="#">記事を見る</a>
+        </li>
+      </ul>
+    </section>
+
+    <section id="calendar" class="content-section">
+      <header class="section-header">
+        <h2>行事カレンダー</h2>
+        <a href="#">行事カレンダーに移動する</a>
+      </header>
+      <ul class="link-list">
+        <li><a href="#">年間予定のダミー項目</a></li>
+      </ul>
+    </section>
+
+    <section class="search-shortcut" aria-label="菊友会についてへの導線">
+      <button class="search-shortcut__trigger" type="button" aria-expanded="false" aria-controls="about-preview">
+        菊友会とは？<span class="search-shortcut__chevrons" aria-hidden="true"></span>
+      </button>
+    </section>
+
+    <section id="about-preview" class="about-preview" aria-label="菊友会の紹介" hidden>
+      <div class="about-preview__media" aria-label="紹介画像エリア"></div>
+      <div class="about-preview__body" aria-label="紹介テキストエリア"></div>
+    </section>
+
+    <section id="bulletin" class="content-section">
+      <header class="section-header">
+        <h2>菊友会報</h2>
+        <a href="#">菊友会報に移動する</a>
+      </header>
+      <ul class="link-list">
+        <li><a href="#">菊友会報 最新号の案内</a></li>
+      </ul>
+    </section>
+
+    <section id="community" class="content-section community-section">
+      <header class="section-header">
+        <h2>同期会/クラブ/同好会</h2>
+        <a href="#">同期会/クラブ/同好会に移動する</a>
+      </header>
+      <div class="community-slider" aria-label="同期会、クラブ、同好会の一覧">
+        <article class="community-slide">
+          <h3>同期会</h3>
+          <ul class="button-list">
+            <li><a href="#">高○回 同期会</a></li>
+            <li><a href="#">高○回 クラス会</a></li>
+            <li><a href="#">高○回 記念同期会</a></li>
+            <li><a href="#">中等○回 同期会</a></li>
+          </ul>
+        </article>
+        <article class="community-slide">
+          <h3>クラブ</h3>
+          <ul class="button-list">
+            <li><a href="#">一流会</a></li>
+            <li><a href="#">一走会</a></li>
+            <li><a href="#">九悠会</a></li>
+            <li><a href="#">K.B.C</a></li>
+          </ul>
+        </article>
+        <article class="community-slide">
+          <h3>同好会</h3>
+          <ul class="button-list">
+            <li><a href="#">関西菊友会</a></li>
+            <li><a href="#">菊友囲碁会</a></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="letters" class="content-section">
+      <header class="section-header">
+        <h2>会員だより</h2>
+        <a href="#">会員だよりへ</a>
+      </header>
+      <ul class="link-list">
+        <li><a href="#">会員だよりのダミー項目</a></li>
+      </ul>
+    </section>
+
+    <section id="gallery" class="content-section">
+      <header class="section-header">
+        <h2>思い出写真館</h2>
+        <a href="#">思い出写真館へ</a>
+      </header>
+      <ul class="button-list">
+        <li><a href="#">盡性園の移り変わり</a></li>
+        <li><a href="#">至大荘のあゆみ</a></li>
+      </ul>
+    </section>
+
+    <section id="notices" class="content-section">
+      <header class="section-header">
+        <h2>菊友会からのお知らせ</h2>
+        <a href="#">お知らせ一覧へ</a>
+      </header>
+      <div class="split-list">
+        <div>
+          <h3>一般向け</h3>
+          <ul class="link-list">
+            <li><a href="#">維持会費のご案内</a></li>
+            <li><a href="#">休室日のお知らせ</a></li>
+            <li><a href="#">証明書等の発行について</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>会員向け</h3>
+          <ul class="link-list">
+            <li><a href="#">逝去者情報</a></li>
+            <li><a href="#">連絡先不明者</a></li>
+            <li><a href="#">教員異動情報</a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="media" class="content-section">
+      <header class="section-header">
+        <h2>映像・写真・関連リンク</h2>
+      </header>
+      <ul class="card-list">
+        <li class="card">
+          <h3>空撮映像</h3>
+          <a href="#">Web版を見る</a>
+        </li>
+        <li class="card">
+          <h3>寄贈のお花</h3>
+          <a href="#">写真を見る</a>
+        </li>
+        <li class="card">
+          <h3>関連サイト</h3>
+          <a href="#">外部リンクへ</a>
+        </li>
+      </ul>
+    </section>
+
+    <section id="donation" class="content-section">
+      <header class="section-header">
+        <h2>菊友会維持会費・寄付 ポータルサイト</h2>
+      </header>
+      <ul class="card-list">
+        <li class="card">
+          <h3>PCご利用の方</h3>
+          <div class="portal-placeholder">PC用画像・ボタンエリア</div>
+        </li>
+        <li class="card">
+          <h3>スマホご利用の方</h3>
+          <div class="portal-placeholder">QRコード・スマホ用画像エリア</div>
+        </li>
+      </ul>
+    </section>
+
+    <section id="about" class="content-section">
+      <header class="section-header">
+        <h2>菊友会について</h2>
+      </header>
+      <ul class="button-list">
+        <li><a href="#">会長挨拶</a></li>
+        <li><a href="#">母校の沿革と菊友会</a></li>
+        <li><a href="#">役員一覧</a></li>
+        <li><a href="#">評議員</a></li>
+        <li><a href="#">事務局</a></li>
+        <li><a href="#">組織・体制図</a></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <section id="contact" class="footer-section">
+      <h2>菊友会事務局の連絡先</h2>
+      <address>
+        <p>〒102-0073 東京都千代田区九段北 2-2-1</p>
+        <p>千代田区立九段中等教育学校内</p>
+        <p>TEL 03-0000-0000 / FAX 03-0000-0000</p>
+        <p>info@example.jp</p>
+        <p>開室日時 毎週 火・金曜 10:30〜17:00</p>
+      </address>
+    </section>
+
+    <nav class="footer-nav" aria-label="サイトマップ">
+      <h2>サイトマップ</h2>
+      <ul>
+        <li><a href="#news">新着情報</a></li>
+        <li><a href="#topics">トピックス</a></li>
+        <li><a href="#calendar">行事カレンダー</a></li>
+        <li><a href="#bulletin">菊友会報</a></li>
+        <li><a href="#community">同期会/クラブ/同好会</a></li>
+        <li><a href="#letters">会員だより</a></li>
+        <li><a href="#gallery">思い出写真館</a></li>
+        <li><a href="#notices">菊友会からのお知らせ</a></li>
+        <li><a href="#about">菊友会について</a></li>
+        <li><a href="#contact">お問合せ・住所変更など</a></li>
+      </ul>
+    </nav>
+
+    <div class="footer-meta">
+      <ul class="footer-legal">
+        <li><a href="#">菊友会規約</a></li>
+        <li><a href="#">個人情報保護方針</a></li>
+        <li><a href="#">ホームページ管理運用規程</a></li>
+      </ul>
+      <p class="copyright">Copyright 2026 菊友会</p>
+    </div>
+  </footer>
+  <script src="./ktym-js/menu.js"></script>
+</body>
+</html>
